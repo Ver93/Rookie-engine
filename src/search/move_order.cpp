@@ -1,0 +1,51 @@
+#include "move_order.h"
+
+namespace MoveOrder {
+    bool isFavorableCapture(const Move& move) {
+        int attackerValue = Const::getPieceValue(move.movingPiece);
+        int victimValue = Const::getPieceValue(move.capturePiece);
+
+        return victimValue >= attackerValue;
+    }
+
+    int scoreSingle(State& state, Move& move){
+        int score = 0;
+        if(move.movingType == Const::MT_CAPTURE){
+            int capturedValue = Const::getPieceValue(move.capturePiece);
+            int attackerValue = Const::getPieceValue(move.movingPiece);
+
+            if (isFavorableCapture(move)) {
+                score += 1000 + capturedValue - attackerValue;
+            } else {
+                if(state.threatMap[state.turn ^ 1] & Const::SQUARE_MASK[move.to]){
+                    score = -1000;
+                }
+                score -= 300;
+            }
+        }
+
+        if(move.movingType == Const::MT_PROMOTION || move.movingType == Const::MT_PROMOTION){
+            score += 1000;
+        }
+
+        if (MoveVal::isKingInCheckBeforeMove(state)) {
+            if (move.movingPiece == Const::W_KING || move.movingPiece == Const::B_KING) {
+                score += 99999999;
+            }
+        }
+        
+        return score;
+    }
+
+    void scoreMoves(State& state, std::vector<Move>& moves) {
+        for (Move& move : moves) {
+            move.score = scoreSingle(state, move);
+        }
+    }
+
+    void sortMoves(std::vector<Move>& moves) {
+        std::sort(moves.begin(), moves.end(), [](const Move& a, const Move& b) {
+            return a.score > b.score;
+        });
+    }
+}

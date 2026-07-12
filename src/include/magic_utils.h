@@ -1,0 +1,36 @@
+#pragma once
+
+#include <cstdint>
+#include <vector>
+#include <random>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+#include <memory>
+#include <string>
+#include <filesystem>
+
+#include "const.h"
+#include "bitintrinsics.h"
+#include "attack_tables.h"
+
+namespace MagicUtils {
+    uint64_t generateSlidingMoves(int square, uint64_t blockerConfig, int pieceType);
+    uint64_t generateJumpingMoves(int square, int pieceType, bool isWhite);
+    uint64_t generatePassedPawnMask(int square, bool isWhite);
+    uint64_t generateRelevantAdjacentFileMask(int square);
+    uint64_t generateRelevantSingleFileMask(int square);
+    uint64_t rand64();
+    uint64_t randomMagic();
+    uint64_t findMagic(int square, int relevantBits, int pt, uint64_t& mask, std::vector<uint64_t> permutations);
+
+    bool testMagic(std::vector<uint64_t>& permutations, std::vector<uint64_t>& used, uint64_t magic, int relevantBits, int pt, int square, uint64_t arraySize);
+    bool filterHeuristics(uint64_t magic, uint64_t mask, int shift);
+    bool fileExists(const std::string& path);
+
+    void saveMagicData(std::unique_ptr<AttackTables::AttackData>& dataPtr, const std::string& saveString);
+    void ensureDataDirectoryExists(const std::filesystem::path& dirPath);
+
+    std::unique_ptr<AttackTables::AttackData> loadMagicData(const std::string& loadString);
+    std::vector<uint64_t> calcTotalPermutations(uint64_t mask);
+}
