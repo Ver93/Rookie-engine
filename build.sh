@@ -35,3 +35,6 @@ fi
 
 echo "Engine build successful!"
 echo "Output: $BIN_DIR/engine"
+
+
+cp bin/engine rookie-engine
