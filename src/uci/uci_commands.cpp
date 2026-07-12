@@ -39,8 +39,8 @@ namespace UCI_Commands {
     void execute(const std::string& cmd) {
 
         if (cmd == "uci") {
-            std::cout << "id name MyEngine\n";
-            std::cout << "id author Victor\n";
+            std::cout << "id name Rookie!\n";
+            std::cout << "id author Victor Rotman!\n";
             std::cout << "uciok\n";
         }
 
