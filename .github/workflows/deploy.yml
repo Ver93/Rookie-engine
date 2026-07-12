@@ -15,6 +15,9 @@ jobs:
     - name: Build engine
       run: bash build.sh
 
+    - name: List files after build
+      run: ls -al
+
     - name: Copy engine to server
       uses: appleboy/scp-action@v0.1.4
       with:
