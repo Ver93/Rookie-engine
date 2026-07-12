@@ -72,7 +72,7 @@ namespace UCI_Commands {
             if (depth > 5)
                 depth = 5;
 
-            std::cout << "Searching depth: " << depth << "\n";
+            // std::cout << "Searching depth: " << depth << "\n";
 
             Engine::go(depth);
         }
