@@ -66,6 +66,12 @@ namespace UCI_Commands {
                 }
             }
 
+            if(depth < 1)
+                depth = 3;
+
+            if(depth > 5)
+                depth = 5;
+
             Engine::go(depth);
         }
 
