@@ -66,11 +66,13 @@ namespace UCI_Commands {
                 }
             }
 
-            // if(depth < 1)
-            //     depth = 3;
+            if (depth < 1)
+                depth = 1;
 
-            // if(depth > 5)
-            //     depth = 5;
+            if (depth > 5)
+                depth = 5;
+
+            std::cerr << "Searching depth: " << depth << "\n";
 
             Engine::go(depth);
         }
