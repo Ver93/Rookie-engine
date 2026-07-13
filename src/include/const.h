@@ -2,21 +2,17 @@
 
 #include <cstdint>
 #include <string>
-// #include <unordered_map>
 
 namespace Const {
 
-    /* Values For Magics */
     constexpr int MAX_SQUARES                   = 1ULL << 6;
     constexpr int MAX_BISHOP_ENTRIES            = 1ULL << 13;
     constexpr int MAX_ROOK_ENTRIES              = 1ULL << 14;
     constexpr int TRIVIAL_MAGIC                 = 0xFF;
     constexpr int NO_VALUE                      = -1;
 
-    /* Sliding Piece Direction For Magics */
     constexpr int SLIDING_MOVES[8][2]           { {-1, +0}, {+1, +0}, {+0, -1}, {+0, +1}, {-1, -1}, {-1, +1}, {+1, -1}, {+1, +1} };
 
-    /* Piece Types */
     constexpr int PT_PAWN                       = 0;
     constexpr int PT_KNIGHT                     = 1;
     constexpr int PT_BISHOP                     = 2;
@@ -24,11 +20,9 @@ namespace Const {
     constexpr int PT_QUEEN                      = 4;
     constexpr int PT_KING                       = 5;
 
-    /* Turn Color */
     constexpr int PC_WHITE                      = 0;
     constexpr int PC_BLACK                      = 1;
 
-    /* Piece Index White */
     constexpr int W_PAWN                        = PT_PAWN;
     constexpr int W_KNIGHT                      = PT_KNIGHT;
     constexpr int W_BISHOP                      = PT_BISHOP;
@@ -36,7 +30,6 @@ namespace Const {
     constexpr int W_QUEEN                       = PT_QUEEN;
     constexpr int W_KING                        = PT_KING;
 
-    /* Piece Index Black */
     constexpr int B_PAWN                        = PT_PAWN + 6;
     constexpr int B_KNIGHT                      = PT_KNIGHT + 6;
     constexpr int B_BISHOP                      = PT_BISHOP + 6;
@@ -44,7 +37,6 @@ namespace Const {
     constexpr int B_QUEEN                       = PT_QUEEN + 6;
     constexpr int B_KING                        = PT_KING + 6;
 
-    /* Movement Types */
     constexpr int MT_QUIET                      = 0;
     constexpr int MT_CAPTURE                    = 1;
     constexpr int MT_DOUBLEPUSH                 = 2;
@@ -53,11 +45,9 @@ namespace Const {
     constexpr int MT_PROMOTION                  = 5;
     constexpr int MT_PROMOTION_CAPTURE          = 6;
 
-    /* Pawn Pushes */
     constexpr int SINGLE_PUSH                   = 8;
     constexpr int DOUBLE_PUSH                   = 16;
 
-    /* Castle Values */
     constexpr int C_QUEEN_SIDE                  = 0;
     constexpr int C_KING_SIDE                   = 1;
 
@@ -110,18 +100,22 @@ namespace Const {
         (1ULL << SQUARE::F8) |
         (1ULL << SQUARE::G8);
 
-    /* Promotion pieces */
     constexpr int NUM_PROMOTION_PIECES = 4;
 
     constexpr int W_PROMOTION_PIECES[] = {
-        W_KNIGHT, W_BISHOP, W_ROOK, W_QUEEN
+        W_KNIGHT,
+        W_BISHOP,
+        W_ROOK,
+        W_QUEEN
     };
 
     constexpr int B_PROMOTION_PIECES[] = {
-        B_KNIGHT, B_BISHOP, B_ROOK, B_QUEEN
+        B_KNIGHT,
+        B_BISHOP,
+        B_ROOK,
+        B_QUEEN
     };
 
-    /* Bitmap file exclusions */
     constexpr uint64_t EXCLUDE_A_FILE           = 0xfefefefefefefefeULL;
     constexpr uint64_t EXCLUDE_B_FILE           = 0xfdfdfdfdfdfdfdfdULL;
     constexpr uint64_t EXCLUDE_G_FILE           = 0xbfbfbfbfbfbfbfbfULL;
@@ -130,7 +124,6 @@ namespace Const {
     constexpr uint64_t EXCLUDE_AB_FILE          = EXCLUDE_A_FILE & EXCLUDE_B_FILE;
     constexpr uint64_t EXCLUDE_GH_FILE          = EXCLUDE_G_FILE & EXCLUDE_H_FILE;
 
-    /* Bitmap rank inclusion */
     constexpr uint64_t RANK_1                   = 0x00000000000000FFULL;
     constexpr uint64_t RANK_2                   = 0x000000000000FF00ULL;
     constexpr uint64_t RANK_7                   = 0x00FF000000000000ULL;
@@ -138,7 +131,6 @@ namespace Const {
 
     constexpr uint64_t NO_MASK                  = 0x00ULL;
 
-    /* Bitmask Per Square*/
     constexpr uint64_t SQUARE_MASK[64] = {
         1ULL << 0,  1ULL << 1,  1ULL << 2,  1ULL << 3,  1ULL << 4,  1ULL << 5,  1ULL << 6,  1ULL << 7,
         1ULL << 8,  1ULL << 9,  1ULL << 10, 1ULL << 11, 1ULL << 12, 1ULL << 13, 1ULL << 14, 1ULL << 15,
@@ -150,25 +142,10 @@ namespace Const {
         1ULL << 56, 1ULL << 57, 1ULL << 58, 1ULL << 59, 1ULL << 60, 1ULL << 61, 1ULL << 62, 1ULL << 63
     };
 
-    /* FEN-string constants */
     const std::string STARTING_FEN              = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
-    const std::string POSITION_2                = "r3k2r/p1ppqpb1/bn2pnp1/3PN3/1p2P3/2N2Q1p/PPPBBPPP/R3K2R w KQkq - ";
-    const std::string POSITION_3                = "8/2p5/3p4/KP5r/1R3p1k/8/4P1P1/8 w - - 0 1";
-    const std::string POSITION_4                = "r3k2r/Pppp1ppp/1b3nbN/nP6/BBP1P3/q4N2/Pp1P2PP/R2Q1RK1 w kq - 0 1";
-    const std::string POSITION_5                = "rnbq1k1r/pp1Pbppp/2p5/8/2B5/8/PPP1NnPP/RNBQK2R w KQ - 1 8 ";
 
-    // const std::unordered_map<std::string, std::string> PRESET_FENS = {
-    //     {"start", STARTING_FEN},
-    //     {"castle", POSITION_2},
-    //     {"promo", POSITION_3},
-    //     {"pos 4", POSITION_4},
-    //     {"pos 5", POSITION_5}
-    // };
-
-    /* Evaluation Values*/
     constexpr int INF                           = 1000000000;
 
-    /* Piece Values */
     constexpr int PV_PAWN                       = 100;
     constexpr int PV_KNIGHT                     = 320;
     constexpr int PV_BISHOP                     = 350;
@@ -176,7 +153,6 @@ namespace Const {
     constexpr int PV_QUEEN                      = 900;
     constexpr int PV_KING                       = INF;
 
-    /* Helpers */
     constexpr int getPieceType(int pieceIndex) {
         return (pieceIndex >= 6) ? pieceIndex - 6 : pieceIndex;
     }
@@ -189,17 +165,19 @@ namespace Const {
         return isWhite ? W_PROMOTION_PIECES : B_PROMOTION_PIECES;
     }
 
+    constexpr int PIECE_VALUES[] = {
+        PV_PAWN,
+        PV_KNIGHT,
+        PV_BISHOP,
+        PV_ROOK,
+        PV_QUEEN,
+        PV_KING
+    };
+
     constexpr int getPieceValue(int pieceType){
-        switch (pieceType){
-        case PT_PAWN:                           return PV_PAWN; break;
-        case PT_KNIGHT:                         return PV_KNIGHT; break;
-        case PT_BISHOP:                         return PV_BISHOP; break;
-        case PT_ROOK:                           return PV_ROOK; break;
-        case PT_QUEEN:                          return PV_QUEEN; break;
-        case PT_KING:                           return PV_KING; break;
-        }
-        return 0;
+        return PIECE_VALUES[pieceType];
     }
+
 
     constexpr uint64_t FILE_MASKS[8] = {
         0x0101010101010101ULL, // File A

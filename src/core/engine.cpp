@@ -27,18 +27,8 @@ namespace Engine {
     }
 
     void go(int depth){
-        // Utils::printBoard(state);
-        // std::vector<Move> legalMoves = Search::findBestMove(state, GlobalConfig::search_depth);
         Move legalMoves = Search::findBestMove(state, depth);
-
-        // Utils::printUCIMove(legalMoves[0]);
         Utils::printUCIMove(legalMoves);
-
-        // for(const auto& move : legalMoves){
-        //     std::cout << Utils::squareToString(move.from) << 
-        //     Utils::squareToString(move.to) << 
-        //     " | Score: " << move.score << "\n";
-        // }
     }
 
     void perft(int depth){

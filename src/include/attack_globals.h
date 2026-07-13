@@ -6,5 +6,4 @@
 
 namespace AttackGlobals {
     extern std::unique_ptr<AttackTables::AttackData> ad;
-    // extern AttackTables::AttackData ad;
 }

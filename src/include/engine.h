@@ -5,7 +5,6 @@
 #include "utils.h"
 #include "state.h"
 #include "search.h"
-#include "global_config.h"
 
 namespace Engine {
     void initialize();

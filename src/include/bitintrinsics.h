@@ -6,7 +6,7 @@
 #include <intrin.h>
 
 #pragma warning(push)
-#pragma warning(disable : 4244) // Suppress narrowing warnings
+#pragma warning(disable : 4244)
 
 inline int popcount64(uint64_t x) {
     return __popcnt64(x);

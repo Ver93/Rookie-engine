@@ -72,8 +72,6 @@ namespace UCI_Commands {
             if (depth > 5)
                 depth = 5;
 
-            // std::cout << "Searching depth: " << depth << "\n";
-
             Engine::go(depth);
         }
 
@@ -108,7 +106,7 @@ namespace UCI_Commands {
             
         }
 
-        else if (cmd == "") {
+        else if (cmd == "help") {
             std::cout << "Available commands:\n";
             std::cout << "  uci - Identify the engine\n";
             std::cout << "  isready - Check if the engine is ready\n";

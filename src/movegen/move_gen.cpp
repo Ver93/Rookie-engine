@@ -7,8 +7,7 @@ namespace MoveGen {
         case Const::PT_KNIGHT: return AttackTables::getKnightTable(*AttackGlobals::ad,square);
         case Const::PT_BISHOP: return AttackTables::getBishopTable(*AttackGlobals::ad, square, occupancy);
         case Const::PT_ROOK: return AttackTables::getRookTable(*AttackGlobals::ad,square, occupancy);
-        case Const::PT_QUEEN: return (AttackTables::getBishopTable(*AttackGlobals::ad, square, occupancy)
-        | AttackTables::getRookTable(*AttackGlobals::ad, square, occupancy));
+        case Const::PT_QUEEN: return (AttackTables::getBishopTable(*AttackGlobals::ad, square, occupancy) | AttackTables::getRookTable(*AttackGlobals::ad, square, occupancy));
         case Const::PT_KING: return AttackTables::getKingTable(*AttackGlobals::ad, square);
         default: return 0ULL;
         }
@@ -88,8 +87,12 @@ namespace MoveGen {
 
             
 
-            if(state.kingMoved[state.turn]) return;
-            if(state.kingBitMap[state.turn] & state.threatMap[state.turn ^ 1]) return;
+            if(state.kingMoved[state.turn])
+                return;
+
+            if(state.kingBitMap[state.turn] & state.threatMap[state.turn ^ 1])
+                return;
+
             uint64_t queenSideSquares = (isWhite) ? Const::W_CASTLE_BLOCKER_QS : Const::B_CASTLE_BLOCKER_QS;
             uint64_t kingSideSquares = (isWhite) ? Const::W_CASTLE_BLOCKER_KS : Const::B_CASTLE_BLOCKER_KS;
             bool isQueenSideBlocked = occupancy & queenSideSquares;

@@ -12,10 +12,8 @@ namespace Search {
 
         if (legal.empty()) {
             if (MoveVal::isKingInCheckBeforeMove(state)) {
-                // std::cout << "[alphaBeta] CHECKMATE at depth " << depth << "\n";
                 return -Const::INF + depth;
             } else {
-                // std::cout << "[alphaBeta] STALEMATE at depth " << depth << "\n";
                 return 0;
             }
         }

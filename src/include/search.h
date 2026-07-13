@@ -18,5 +18,4 @@
 namespace Search {
     int alphaBeta(State& state, int depth, int alpha, int beta);
     Move findBestMove(State& state, int depth);
-    // std::vector<Move> findBestMove(State& state, int depth);
 }

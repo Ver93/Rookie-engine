@@ -91,21 +91,15 @@ namespace Evaluate {
 
     int evaluateMaterial(State& state, bool isWhite) {
         int score = 0;
-
-        uint64_t temp     = (isWhite) ? state.turnOccupancy[Const::PC_WHITE]
-                                      : state.turnOccupancy[Const::PC_BLACK];
+        
+        uint64_t temp = (isWhite) ? state.turnOccupancy[Const::PC_WHITE] : state.turnOccupancy[Const::PC_BLACK];
 
         uint64_t friendly = temp;
-        uint64_t opponent = (isWhite) ? state.turnOccupancy[Const::PC_BLACK]
-                                      : state.turnOccupancy[Const::PC_WHITE];
+        uint64_t king = state.kingBitMap[state.turn]; 
 
-        uint64_t king     = state.kingBitMap[state.turn]; 
-
-        uint64_t friendlyPawns    = (isWhite) ? state.bitboards[Const::W_PAWN]
-                                      : state.bitboards[Const::B_PAWN];
-
-        uint64_t opponentPawns    = (isWhite) ? state.bitboards[Const::B_PAWN]
-                                      : state.bitboards[Const::W_PAWN];
+        uint64_t opponent = (isWhite) ? state.turnOccupancy[Const::PC_BLACK] : state.turnOccupancy[Const::PC_WHITE];
+        uint64_t friendlyPawns = (isWhite) ? state.bitboards[Const::W_PAWN] : state.bitboards[Const::B_PAWN];
+        uint64_t opponentPawns = (isWhite) ? state.bitboards[Const::B_PAWN] : state.bitboards[Const::W_PAWN];
 
         while (temp) {
             int sq = Utils::popLSB(temp);
@@ -138,6 +132,5 @@ namespace Evaluate {
             EvalGlobals::ed.whitePawnPassedMask[square] = EvalUtils::generatePassedPawnMask(square, true);
             EvalGlobals::ed.blackPawnPassedMask[square] = EvalUtils::generatePassedPawnMask(square, false);
         }
-        
     }
 }
