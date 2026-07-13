@@ -5,6 +5,8 @@
 #include "utils.h"
 #include "state.h"
 #include "search.h"
+#include "tt.h"
+#include "zobrist.h"
 
 namespace Engine {
     void initialize();

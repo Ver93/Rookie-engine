@@ -6,6 +6,8 @@ namespace Engine {
     void initialize() {
         Magics::initialize();
         Evaluate::initialize();
+        TranspositionTable::initTT(64);
+        Zobrist::init();
         Utils::loadFen(state, Const::STARTING_FEN);
     }
 

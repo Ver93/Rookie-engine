@@ -3,8 +3,28 @@
 #include "const.h"
 
 struct Move {
+
+    inline bool operator==(const Move& other) const {
+        return from == other.from &&
+            to == other.to &&
+            movingPiece == other.movingPiece &&
+            pieceType == other.pieceType &&
+            movingType == other.movingType &&
+            capturePiece == other.capturePiece &&
+            promotionPiece == other.promotionPiece &&
+            enPassantCapturePiece == other.enPassantCapturePiece &&
+            enPassantTargetSquare == other.enPassantTargetSquare &&
+            rookSquare == other.rookSquare &&
+            rookDestination == other.rookDestination &&
+            rookPiece == other.rookPiece;
+    }
+
+
+
     Move() = default;
     Move(int f, int t, int mp, int pt, int mt) : from(f), to(t), movingPiece(mp), pieceType(pt), movingType(mt) {}
+
+
     
     int from            = Const::NO_VALUE;
     int to              = Const::NO_VALUE;
