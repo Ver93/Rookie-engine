@@ -19,6 +19,11 @@ struct Move {
             rookPiece == other.rookPiece;
     }
 
+    inline bool operator!=(const Move& other) const {
+        return !(*this == other);
+    }
+
+
 
 
     Move() = default;

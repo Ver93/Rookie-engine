@@ -7,6 +7,7 @@
 #include "search.h"
 #include "tt.h"
 #include "zobrist.h"
+#include "opening_book.h"
 
 namespace Engine {
     void initialize();

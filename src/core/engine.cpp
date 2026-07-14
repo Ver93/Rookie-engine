@@ -2,6 +2,7 @@
 
 namespace Engine {
     State state;
+    std::string currentFEN;
 
     void initialize() {
         Magics::initialize();
@@ -9,15 +10,19 @@ namespace Engine {
         TranspositionTable::initTT(64);
         Zobrist::init();
         Utils::loadFen(state, Const::STARTING_FEN);
+        OpeningBook::initialize();
+        currentFEN = Const::STARTING_FEN;
     }
 
     void reset(){
         Utils::loadFen(state, Const::STARTING_FEN);
+        currentFEN = Const::STARTING_FEN;
     }
     
     void setPosition(const std::string& fen){
         Utils::printBoard(state);
         Utils::loadFen(state, fen);
+        currentFEN = fen;
         Utils::printBoard(state);
     }
 
@@ -29,6 +34,15 @@ namespace Engine {
     }
 
     void go(int depth){
+
+        auto moves = OpeningBook::getMoves(currentFEN);
+        if (!moves.empty()) {
+            std::cout << "bestmove " << moves[0] << std::endl;
+            return;
+        }
+
+
+        state.ply = depth;
         Move legalMoves = Search::findBestMove(state, depth);
         Utils::printUCIMove(legalMoves);
     }

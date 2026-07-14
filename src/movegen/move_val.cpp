@@ -1,4 +1,5 @@
 #include "move_val.h"
+#include "move.h"
 
 namespace MoveVal {
     bool isKingInCheckBeforeMove(State& state){
