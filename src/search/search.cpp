@@ -284,18 +284,18 @@ namespace Search {
                     bestMove = legal[0];
             }
 
-            std::cout << "info depth " << depth
-                      << " score cp " << score
-                      << " pv ";
+            // std::cout << "info depth " << depth
+            //           << " score cp " << score
+            //           << " pv ";
 
-            if (bestMove.isValid()) {
-                std::cout << Utils::squareToString(bestMove.from)
-                          << Utils::squareToString(bestMove.to);
-            } else {
-                std::cout << "(none)";
-            }
+            // if (bestMove.isValid()) {
+            //     std::cout << Utils::squareToString(bestMove.from)
+            //               << Utils::squareToString(bestMove.to);
+            // } else {
+            //     std::cout << "(none)";
+            // }
 
-            std::cout << std::endl;
+            // std::cout << std::endl;
         }
 
         auto end = high_resolution_clock::now();
