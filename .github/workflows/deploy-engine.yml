@@ -21,10 +21,10 @@ jobs:
       run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 
     - name: Build engine
-      run: cmake --build build --config Release
+      run: cmake --build build --verbose
 
-    - name: List files after build
-      run: ls -al bin
+    # - name: List files after build
+    #   run: ls -al bin
 
     - name: Copy engine to server
       uses: appleboy/scp-action@v0.1.4
