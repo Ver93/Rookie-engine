@@ -12,11 +12,16 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Make build.sh executable
-      run: chmod +x build.sh
+    - name: Install build tools
+      run: |
+        sudo apt update
+        sudo apt install -y cmake g++
 
-    - name: Build engine (release)
-      run: ./build.sh release
+    - name: Configure CMake (Release)
+      run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build engine
+      run: cmake --build build --config Release
 
     - name: List files after build
       run: ls -al bin
@@ -27,7 +32,7 @@ jobs:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USER }}
         key: ${{ secrets.SSH_KEY }}
-        source: "bin/engine"
+        source: "bin/rookie_engine"
         target: "/var/www/portfolio/rookie-app/engine/rookie-engine"
 
     - name: Set executable permissions

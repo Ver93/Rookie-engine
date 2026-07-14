@@ -1,0 +1,4 @@
+build/
+bin/
+obj_debug/
+obj_release/
